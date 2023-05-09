@@ -2,7 +2,10 @@ import time
 from django.shortcuts import render
 from django.core.cache import cache
 from django.http import HttpResponse
+from django.views.decorators.cache import cache_page
+from django.views.decorators.vary import vary_on_cookie
 from cachex.models import DummyModel
+from cachex.business import fibonacci
 
 def create_records():
     # Generate 1000 dummy records using Faker
@@ -39,3 +42,39 @@ def cache_example(request):
     context["length"] = len(data)
     return render(request, './templates/cache.html', context)
 
+# def fibonac(n):
+#     if n <= 1:
+#         return n
+#     else:
+#         return fibonac(n-1) + fibonac(n-2)
+    
+# View function without caching
+# def redis_view(request):
+#     n=35
+#     start_time = time.time()
+#     result = fibonacci(n)
+#     end_time = time.time()
+#     duration = end_time - start_time
+#     return render(request, './templates/cache_redis.html', {'n': n, 'result': result, 'duration': duration})
+
+# View function with caching page cache
+# @cache_page(60 * 5) 
+# def redis_view(request):
+#     n=35
+#     start_time = time.time()
+#     result = fibonacci(n)
+#     end_time = time.time()
+#     duration = end_time - start_time
+#     return render(request, './templates/cache_redis.html', {'n': n, 'result': result, 'duration': duration})
+
+# view function with low level
+def redis_view(request):
+    n = 35
+    start_time = time.time()
+    result = cache.get('fibonacci')
+    if result is None:
+        result = fibonacci(n)
+        cache.set('fibonacci', result, 30)
+    end_time = time.time()
+    duration = end_time - start_time
+    return render(request, './templates/cache_redis.html', {'n': n, 'result': result, 'duration': duration})

@@ -4,3 +4,4 @@ pymemcache
 djangorestframework
 pytest
 pytest-django
+django-redis

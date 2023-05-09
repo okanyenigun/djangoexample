@@ -1,0 +1,27 @@
+<!-- cache_redis.html -->
+<!DOCTYPE html>
+{% load cache %}
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Fibonacci Calculation</title>
+    <style>
+      /* Some expensive CSS styles here */
+    </style>
+  </head>
+  <body>
+    <h1>Fibonacci Calculation</h1>
+    <!-- <p>
+      The {{ n }}th Fibonacci number is {{ result }}. Calculation took
+      {{duration}} seconds.
+    </p> -->
+    {% cache 30 fragment %}
+    <p>
+      The {{ n }}th Fibonacci number is {{ result }}. Calculation took
+      {{duration}} seconds.
+    </p>
+    {% endcache %}
+    <p>{{duration}}</p>
+    <!-- Some other expensive HTML elements here -->
+  </body>
+</html>

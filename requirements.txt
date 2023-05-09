@@ -1,0 +1,6 @@
+django
+Faker
+pymemcache
+djangorestframework
+pytest
+pytest-django

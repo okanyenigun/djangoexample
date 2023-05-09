@@ -1,0 +1,13 @@
+{% extends 'base.html' %} {% block content %}
+<h1>Cache Demo App</h1>
+<p>Time taken: {{ time }} seconds</p>
+<ul>
+  <li>{{ length }}</li>
+</ul>
+<form method="GET">
+  <button name="cache">Use Cache</button>
+  <button name="db">Use Database</button>
+  <button name="create">Create Records</button>
+  <button name="del">Delete Records</button>
+</form>
+{% endblock %}

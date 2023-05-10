@@ -127,12 +127,20 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # REDIS CACHE
 #CACHE_MIDDLEWARE_SECONDS = 30
+# CACHES = {
+#     'default': {
+#         'BACKEND': 'django_redis.cache.RedisCache',
+#         'LOCATION': 'redis://127.0.0.1:6379/',
+#         "OPTIONS": {
+#             "CLIENT_CLASS" : "django_redis.client.DefaultClient"
+#         }
+#     }
+# }
+
+# DATABASE CAChE
 CACHES = {
-    'default': {
-        'BACKEND': 'django_redis.cache.RedisCache',
-        'LOCATION': 'redis://127.0.0.1:6379/',
-        "OPTIONS": {
-            "CLIENT_CLASS" : "django_redis.client.DefaultClient"
-        }
+    "default": {
+        "BACKEND": "django.core.cache.backends.db.DatabaseCache",
+        "LOCATION": "my_cache_table",
     }
 }

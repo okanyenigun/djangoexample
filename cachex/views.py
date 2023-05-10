@@ -42,11 +42,7 @@ def cache_example(request):
     context["length"] = len(data)
     return render(request, './templates/cache.html', context)
 
-# def fibonac(n):
-#     if n <= 1:
-#         return n
-#     else:
-#         return fibonac(n-1) + fibonac(n-2)
+
     
 # View function without caching
 # def redis_view(request):
@@ -68,6 +64,18 @@ def cache_example(request):
 #     return render(request, './templates/cache_redis.html', {'n': n, 'result': result, 'duration': duration})
 
 # view function with low level
+# def redis_view(request):
+#     n = 35
+#     start_time = time.time()
+#     result = cache.get('fibonacci')
+#     if result is None:
+#         result = fibonacci(n)
+#         cache.set('fibonacci', result, 30)
+#     end_time = time.time()
+#     duration = end_time - start_time
+#     return render(request, './templates/cache_redis.html', {'n': n, 'result': result, 'duration': duration})
+
+# view function for database cache
 def redis_view(request):
     n = 35
     start_time = time.time()

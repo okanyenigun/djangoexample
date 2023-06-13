@@ -76,13 +76,26 @@ def cache_example(request):
 #     return render(request, './templates/cache_redis.html', {'n': n, 'result': result, 'duration': duration})
 
 # view function for database cache
-def redis_view(request):
+# def redis_view(request):
+#     n = 35
+#     start_time = time.time()
+#     result = cache.get('fibonacci')
+#     if result is None:
+#         result = fibonacci(n)
+#         cache.set('fibonacci', result, 30)
+#     end_time = time.time()
+#     duration = end_time - start_time
+#     return render(request, './templates/cache_redis.html', {'n': n, 'result': result, 'duration': duration})
+
+
+def filesystem_cache_view(request):
     n = 35
     start_time = time.time()
-    result = cache.get('fibonacci')
-    if result is None:
-        result = fibonacci(n)
-        cache.set('fibonacci', result, 30)
+    data = cache.get('mykey')
+    if data is None:
+        data = fibonacci(n)
+        cache.set('mykey', data, 60 * 15)
     end_time = time.time()
     duration = end_time - start_time
-    return render(request, './templates/cache_redis.html', {'n': n, 'result': result, 'duration': duration})
+    return render(request, './templates/cache_redis.html', {'n': n, 'result': data, 'duration': duration})
+    

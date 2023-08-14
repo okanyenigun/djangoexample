@@ -146,9 +146,16 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # }
 
 # FILESYSTEM CACHE
+# CACHES = {
+#     "default": {
+#         "BACKEND": "django.core.cache.backends.filebased.FileBasedCache",
+#         "LOCATION": "/Users/okanyenigun/Desktop/codes/demonstrations/examples/cachefiles",
+#     }
+# }
+
 CACHES = {
-    "default": {
-        "BACKEND": "django.core.cache.backends.filebased.FileBasedCache",
-        "LOCATION": "/Users/okanyenigun/Desktop/codes/demonstrations/examples/cachefiles",
+    'default': {
+        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+        'LOCATION': 'unique-snowflake',  # A unique identifier for the cache
     }
 }

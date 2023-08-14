@@ -15,7 +15,7 @@
       The {{ n }}th Fibonacci number is {{ result }}. Calculation took
       {{duration}} seconds.
     </p> -->
-    {% cache 30 fragment %}
+    {% cache 30 "unique-snowflake" %}
     <p>
       The {{ n }}th Fibonacci number is {{ result }}. Calculation took
       {{duration}} seconds.

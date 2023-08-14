@@ -88,14 +88,21 @@ def cache_example(request):
 #     return render(request, './templates/cache_redis.html', {'n': n, 'result': result, 'duration': duration})
 
 
-def filesystem_cache_view(request):
+# def filesystem_cache_view(request):
+#     n = 35
+#     start_time = time.time()
+#     data = cache.get('mykey')
+#     if data is None:
+#         data = fibonacci(n)
+#         cache.set('mykey', data, 60 * 15)
+#     end_time = time.time()
+#     duration = end_time - start_time
+#     return render(request, './templates/cache_redis.html', {'n': n, 'result': data, 'duration': duration})
+    
+def local_memory_cache_view(request):
     n = 35
-    start_time = time.time()
     data = cache.get('mykey')
     if data is None:
         data = fibonacci(n)
         cache.set('mykey', data, 60 * 15)
-    end_time = time.time()
-    duration = end_time - start_time
-    return render(request, './templates/cache_redis.html', {'n': n, 'result': data, 'duration': duration})
-    
+    return render(request, './templates/cache_redis.html', {'n': n, 'result': data})

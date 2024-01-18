@@ -30,6 +30,7 @@ INSTALLED_APPS = [
     'cachex',
     'rest_framework',
     'resttest',
+    'sessioncookie',
 ]
 
 MIDDLEWARE = [
@@ -153,9 +154,9 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 #     }
 # }
 
-CACHES = {
-    'default': {
-        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
-        'LOCATION': 'unique-snowflake',  # A unique identifier for the cache
-    }
-}
+# CACHES = {
+#     'default': {
+#         'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+#         'LOCATION': 'unique-snowflake',  # A unique identifier for the cache
+#     }
+# }

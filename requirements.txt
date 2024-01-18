@@ -5,4 +5,3 @@ djangorestframework
 pytest
 pytest-django
 django-redis
-mysqlclient
